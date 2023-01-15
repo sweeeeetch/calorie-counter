@@ -10,6 +10,9 @@ const norm = document.querySelector('#calories-norm');
 const min = document.querySelector('#calories-minimal');
 const max = document.querySelector('#calories-maximal');
 const reset = document.querySelector('.form__reset-button');
+const inputs = documet.querySelector('.input__wrapper > input')
+inputs.forEach(el => el.setAttribute('inputmode', 'decimal'))
+
 
 const ratios = [1.2, 1.375, 1.55, 1.725, 1.9];
 // N = (10 *67) + (6,25 * 173) − (5 × 15) + 5
