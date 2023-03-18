@@ -35,7 +35,7 @@ activities.forEach((el, i) =>
   })
 );
 
-inputsGroup.addEventListener('change', function (e) {
+inputsGroup.addEventListener('input', function (e) {
   if (age.value && height.value && weight.value)
     btn.removeAttribute('disabled');
   if (age.value || height.value || weight.value)
