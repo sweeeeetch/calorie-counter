@@ -1,15 +1,15 @@
-const age = document.querySelector('#age');
-const height = document.querySelector('#height');
-const weight = document.querySelector('#weight');
+const age = document.querySelector("#age");
+const height = document.querySelector("#height");
+const weight = document.querySelector("#weight");
 const activities = document.querySelectorAll('input[name="activity"]');
-const btn = document.querySelector('.button');
-const inputsGroup = document.querySelector('.inputs-group');
-const switcher = document.querySelector('.switcher');
-const result = document.querySelector('.counter__result');
-const norm = document.querySelector('#calories-norm');
-const min = document.querySelector('#calories-minimal');
-const max = document.querySelector('#calories-maximal');
-const reset = document.querySelector('.form__reset-button');
+const btn = document.querySelector(".button");
+const inputsGroup = document.querySelector(".inputs-group");
+const switcher = document.querySelector(".switcher");
+const result = document.querySelector(".counter__result");
+const norm = document.querySelector("#calories-norm");
+const min = document.querySelector("#calories-minimal");
+const max = document.querySelector("#calories-maximal");
+const reset = document.querySelector(".form__reset-button");
 
 const ratios = [1.2, 1.375, 1.55, 1.725, 1.9];
 
@@ -18,33 +18,42 @@ const fFormula = 10 * weight.value + 6.25 * height.value - 5 * age.value - 161;
 let mORf = 1;
 let actIndex = 0;
 
-switcher.addEventListener('change', function (e) {
-  if (e.target.hasAttribute('checked')) mORf = 1;
+switcher.addEventListener("change", function (e) {
+  if (e.target.hasAttribute("checked")) mORf = 1;
   else mORf = 2;
   console.log(mORf);
 });
 
 if (age.value & height.value && weight.value) {
-  btn.removeAttribute('disabled');
+  btn.removeAttribute("disabled");
 }
 
 activities.forEach((el, i) =>
-  el.addEventListener('click', function () {
+  el.addEventListener("click", function () {
     actIndex = i;
     console.log(actIndex);
   })
 );
 
-inputsGroup.addEventListener('input', function (e) {
-  if (age.value && height.value && weight.value)
-    btn.removeAttribute('disabled');
-  if (age.value || height.value || weight.value)
-    reset.removeAttribute('disabled');
+inputsGroup.addEventListener("input", function (e) {
+  if (age.value && height.value && weight.value) {
+    if (age.value != 0 && height.value != 0 && weight.value != 0) {
+      btn.removeAttribute("disabled");
+    }
+    console.log(age.value);
+    console.log(height.value);
+    console.log(weight.value);
+  } else {
+    btn.setAttribute("disabled", "true");
+  }
+  if (age.value || height.value || weight.value) {
+    reset.removeAttribute("disabled");
+  }
 });
 
-btn.addEventListener('click', function (e) {
+btn.addEventListener("click", function (e) {
   e.preventDefault();
-  result.style.visibility = 'visible';
+  result.style.visibility = "visible";
   result.style.opacity = 1;
   if (mORf == 1) {
     norm.textContent = Math.trunc(
@@ -84,17 +93,17 @@ btn.addEventListener('click', function (e) {
 });
 
 const resetFunc = function () {
-  age.value = '';
-  height.value = '';
-  weight.value = '';
+  age.value = "";
+  height.value = "";
+  weight.value = "";
 
   activities[0].checked = true;
-  document.querySelector('#gender-male').checked = true;
-  btn.setAttribute('disabled', true);
-  reset.setAttribute('disabled', true);
+  document.querySelector("#gender-male").checked = true;
+  btn.setAttribute("disabled", true);
+  reset.setAttribute("disabled", true);
 
-  result.style.visibility = 'hidden';
+  result.style.visibility = "hidden";
   result.style.opacity = 0;
 };
 
-reset.addEventListener('click', resetFunc);
+reset.addEventListener("click", resetFunc);
